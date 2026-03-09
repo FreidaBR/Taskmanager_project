@@ -1,0 +1,81 @@
+<div class="form-page">
+  <div class="form-container">
+    <div class="form-header">
+      <a routerLink="/tasks" class="back-btn">← Back</a>
+      <h1>{{ isEditMode ? 'Edit Task' : 'Create New Task' }}</h1>
+      <p>{{ isEditMode ? 'Update task details below' : 'Fill in the details for your new task' }}</p>
+    </div>
+
+    <mat-card class="form-card">
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+        <!-- Title -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Title *</mat-label>
+          <input matInput formControlName="title" placeholder="What needs to be done?">
+          <mat-hint align="end">{{ taskForm.get('title')?.value?.length || 0 }}/100</mat-hint>
+          <mat-error *ngIf="taskForm.get('title')?.touched">{{ titleErrors }}</mat-error>
+        </mat-form-field>
+
+        <!-- Description -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="3" placeholder="Add more context..."></textarea>
+          <mat-hint align="end">{{ taskForm.get('description')?.value?.length || 0 }}/500</mat-hint>
+        </mat-form-field>
+
+        <!-- Row: Category + Priority -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority">
+              <mat-option *ngFor="let p of priorities" [value]="p">{{ p | titlecase }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Row: Status + Due Date -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+              <mat-option value="pending">Pending</mat-option>
+              <mat-option value="in_progress">In Progress</mat-option>
+              <mat-option value="completed">Completed</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Due Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dueDate">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <!-- Tags -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tags (comma-separated)</mat-label>
+          <input matInput formControlName="tags" placeholder="urgent, frontend, review">
+          <mat-hint>Separate multiple tags with commas</mat-hint>
+        </mat-form-field>
+
+        <!-- Actions -->
+        <div class="form-actions">
+          <button mat-stroked-button type="button" routerLink="/tasks">Cancel</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">
+            {{ isEditMode ? 'Update Task' : 'Create Task' }}
+          </button>
+        </div>
+
+      </form>
+    </mat-card>
+  </div>
+</div>

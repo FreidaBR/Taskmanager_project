@@ -1,0 +1,93 @@
+<div class="detail-page" *ngIf="task">
+  <div class="detail-container">
+
+    <div class="page-nav">
+      <a routerLink="/tasks" class="back-btn">← Back to Tasks</a>
+      <div class="nav-actions">
+        <a mat-stroked-button [routerLink]="['/edit', task.id]" color="primary">
+          <mat-icon>edit</mat-icon> Edit Task
+        </a>
+        <button mat-stroked-button color="warn" (click)="confirmDelete()">
+          <mat-icon>delete</mat-icon> Delete
+        </button>
+      </div>
+    </div>
+
+    <mat-card class="detail-card">
+      <mat-card-content>
+
+        <div class="title-section">
+          <h1 class="task-title">
+            <span *ngIf="isOverdue()" class="overdue-badge">OVERDUE</span>
+            {{ task.title }}
+          </h1>
+          <div class="badges-row">
+            <span class="badge priority-badge" [style.color]="task.priority | priorityColor" [style.border-color]="task.priority | priorityColor">
+              {{ task.priority | titlecase }}
+            </span>
+            <span class="badge status-badge" [style.color]="task.status | statusColor" [style.border-color]="task.status | statusColor">
+              {{ task.status.replace('_', ' ') | titlecase }}
+            </span>
+            <span class="category-chip">{{ task.category | categoryIcon }} {{ task.category }}</span>
+          </div>
+        </div>
+
+        <div class="description-section" *ngIf="task.description">
+          <h3>Description</h3>
+          <p>{{ task.description }}</p>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Due Date</span>
+            <span class="meta-value" [class.overdue-text]="isOverdue()">
+              {{ task.dueDate | date:'MMM d, yyyy' }}
+              <span class="days-chip">{{ task.dueDate | daysUntil }}</span>
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Created</span>
+            <span class="meta-value">{{ task.createdAt | date:'MMM d, yyyy' }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Last Updated</span>
+            <span class="meta-value">{{ task.updatedAt | date:'MMM d, yyyy' }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Category</span>
+            <span class="meta-value">{{ task.category | categoryIcon }} {{ task.category }}</span>
+          </div>
+        </div>
+
+        <div class="tags-section" *ngIf="task.tags.length > 0">
+          <h3>Tags</h3>
+          <div class="tags">
+            <span class="tag" *ngFor="let tag of task.tags">#{{ tag }}</span>
+          </div>
+        </div>
+
+        <div class="status-actions" *ngIf="task.status !== 'completed'">
+          <h3>Quick Actions</h3>
+          <div class="action-buttons">
+            <button mat-raised-button color="accent" (click)="updateStatus('completed')">
+              ✓ Mark as Completed
+            </button>
+            <button mat-stroked-button *ngIf="task.status === 'pending'" (click)="updateStatus('in_progress')">
+              ▶ Start Task
+            </button>
+          </div>
+        </div>
+
+        <div class="completed-banner" *ngIf="task.status === 'completed'">
+          🎉 This task is completed!
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div class="not-found" *ngIf="!task">
+  <p>Task not found.</p>
+  <a routerLink="/tasks">← Back to Tasks</a>
+</div>

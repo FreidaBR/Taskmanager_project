@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: #0a0a12 !important;
+  color: #e2e8f0;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
+.mat-mdc-card {
+  background: #16161e !important;
+  color: #e2e8f0 !important;
+}
+
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #16161e;
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: #1e1e2e;
+  --mdc-snackbar-supporting-text-color: #e2e8f0;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+}
+
+.mat-mdc-progress-bar {
+  border-radius: 99px;
+  --mdc-linear-progress-track-color: rgba(124, 58, 237, 0.15);
+  --mdc-linear-progress-active-indicator-color: #7c3aed;
+}
+
+.mat-mdc-select-panel {
+  background: #1e1e2e !important;
+}
+
+.mat-mdc-option {
+  color: #e2e8f0 !important;
+}
+

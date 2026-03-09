@@ -1,0 +1,149 @@
+<div class="task-list-page">
+
+  <!-- Hero -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">
+        {{ showCompleted ? '✓ Completed' : 'Your Tasks' }}
+        <span class="gradient-text"> Dashboard</span>
+      </h1>
+      <p class="page-sub">{{ filteredTasks.length }} task{{ filteredTasks.length !== 1 ? 's' : '' }}{{ searchQuery ? ' matching "' + searchQuery + '"' : '' }}</p>
+    </div>
+    <div class="stats-chips">
+      <div class="stat-chip">
+        <span class="stat-value">{{ activeCount }}</span>
+        <span class="stat-label">Active</span>
+      </div>
+      <div class="stat-chip green">
+        <span class="stat-value">{{ completedCount }}</span>
+        <span class="stat-label">Done</span>
+      </div>
+      <div class="stat-chip red" *ngIf="overdueCount > 0">
+        <span class="stat-value">{{ overdueCount }}</span>
+        <span class="stat-label">Overdue</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-section">
+    <div class="progress-label">
+      <span>Completion Rate</span>
+      <span class="progress-value">{{ completionRate }}%</span>
+    </div>
+    <mat-progress-bar mode="determinate" [value]="completionRate" color="accent"></mat-progress-bar>
+  </div>
+
+  <!-- Toggle -->
+  <div class="view-toggle">
+    <button [class.active]="!showCompleted" (click)="showCompleted=false; applyFilters()">Active Tasks</button>
+    <button [class.active]="showCompleted" (click)="showCompleted=true; applyFilters()">Completed</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search tasks, tags...</mat-label>
+      <input matInput [(ngModel)]="searchQuery" (ngModelChange)="applyFilters()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="filterCategory" (ngModelChange)="applyFilters()">
+        <mat-option *ngFor="let c of categories" [value]="c">{{ c }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="filterPriority" (ngModelChange)="applyFilters()">
+        <mat-option *ngFor="let p of priorities" [value]="p">{{ p | titlecase }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sort By</mat-label>
+      <mat-select [(ngModel)]="sortBy" (ngModelChange)="applyFilters()">
+        <mat-option value="dueDate">Due Date</mat-option>
+        <mat-option value="priority">Priority</mat-option>
+        <mat-option value="title">Title A–Z</mat-option>
+        <mat-option value="created">Newest First</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="view-mode-btns">
+      <button [class.active]="viewMode==='grid'" (click)="viewMode='grid'" matTooltip="Grid view">⊞</button>
+      <button [class.active]="viewMode==='list'" (click)="viewMode='list'" matTooltip="List view">☰</button>
+    </div>
+
+    <a mat-raised-button color="primary" routerLink="/add">+ New Task</a>
+    <button mat-stroked-button color="accent" (click)="downloadTasksJson()">Export JSON</button>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="filteredTasks.length === 0">
+    <div class="empty-icon">◈</div>
+    <h3>No tasks found</h3>
+    <p>{{ searchQuery ? 'Try adjusting your search or filters' : 'Create your first task to get started' }}</p>
+    <a mat-raised-button color="primary" routerLink="/add">+ Add Task</a>
+  </div>
+
+  <!-- Task Grid -->
+  <div class="tasks-grid" [class.list-mode]="viewMode === 'list'" *ngIf="filteredTasks.length > 0">
+    <mat-card
+      *ngFor="let task of filteredTasks"
+      class="task-card"
+      [appOverdue]="task.dueDate"
+      [status]="task.status">
+
+      <div class="priority-bar" [style.background]="task.priority | priorityColor"></div>
+
+      <mat-card-content>
+        <div class="card-header">
+          <div class="card-title-area">
+            <h3 class="task-title" [class.completed-title]="task.status === 'completed'">
+              <span *ngIf="isOverdue(task)" class="overdue-icon">⚠</span>
+              {{ task.title }}
+            </h3>
+            <div class="badges">
+              <span class="badge" [style.color]="task.status | statusColor" [style.border-color]="task.status | statusColor">
+                {{ task.status.replace('_', ' ') }}
+              </span>
+              <span class="category-badge">{{ task.category | categoryIcon }} {{ task.category }}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a [routerLink]="['/task', task.id]" mat-icon-button matTooltip="View details">
+              <mat-icon>visibility</mat-icon>
+            </a>
+            <a [routerLink]="['/edit', task.id]" mat-icon-button matTooltip="Edit" color="primary">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <button mat-icon-button color="warn" matTooltip="Delete" (click)="confirmDelete(task)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+
+        <div class="card-footer">
+          <div class="tags">
+            <span class="tag" *ngFor="let tag of task.tags.slice(0, 3)">#{{ tag }}</span>
+          </div>
+          <div class="due-date" *ngIf="task.dueDate" [class.overdue]="isOverdue(task)">
+            ◷ {{ task.dueDate | date:'MMM d' }} · {{ task.dueDate | daysUntil }}
+          </div>
+        </div>
+
+        <div class="action-btn-row" *ngIf="task.status !== 'completed'">
+          <button mat-stroked-button class="status-btn"
+            (click)="updateStatus(task, task.status === 'pending' ? 'in_progress' : 'completed')">
+            {{ task.status === 'pending' ? '▶ Start Task' : '✓ Mark Complete' }}
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
