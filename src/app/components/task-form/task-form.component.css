@@ -1,6 +1,6 @@
 .form-page {
   min-height: calc(100vh - 64px);
-  background: #0a0a12;
+  background: #f5efe6;
   padding: 40px 24px;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .form-page .form-header .back-btn {
-  color: #7c3aed;
+  color: #8b5e3c;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
@@ -29,18 +29,18 @@
 .form-page .form-header h1 {
   font-size: 32px;
   font-weight: 700;
-  color: #e2e8f0;
+  color: #3f2a1d;
   margin: 0 0 8px;
 }
 
 .form-page .form-header p {
-  color: #4a5568;
+  color: #8b7359;
   margin: 0;
 }
 
 .form-page .form-card {
-  background: #16161e !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #fff7ec !important;
+  border: 1px solid rgba(193, 166, 136, 0.8) !important;
   border-radius: 16px !important;
   padding: 28px !important;
   box-shadow: none !important;
@@ -70,26 +70,26 @@
 }
 
 ::ng-deep .mat-mdc-form-field-flex {
-  background: #0d0d17 !important;
+  background: #fff7ec !important;
 }
 
 ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__leading,
 ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__notch,
 ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__trailing {
-  border-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(193, 166, 136, 0.8) !important;
 }
 
 ::ng-deep .mat-mdc-input-element,
 ::ng-deep .mat-mdc-select-value-text {
-  color: #e2e8f0 !important;
+  color: #3f2a1d !important;
 }
 
 ::ng-deep .mat-mdc-form-field-label,
 ::ng-deep .mat-mdc-floating-label {
-  color: #94a3b8 !important;
+  color: #8b7359 !important;
 }
 
 ::ng-deep .mat-mdc-card {
-  color: #e2e8f0;
+  color: #3f2a1d;
 }
 

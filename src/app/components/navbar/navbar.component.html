@@ -7,6 +7,8 @@
     </div>
   </div>
 
+  <span class="spacer"></span>
+
   <nav class="nav-links">
     <a mat-button routerLink="/tasks" routerLinkActive="active-link">
       All Tasks
@@ -15,20 +17,14 @@
     <a mat-button routerLink="/completed" routerLinkActive="active-link">
       Completed
     </a>
-    <a mat-button routerLink="/add" routerLinkActive="active-link"
-       style="background: linear-gradient(135deg,#7c3aed,#a855f7); color: white; border-radius: 8px; margin-left: 8px;">
+    <a mat-raised-button color="primary" routerLink="/add" class="add-task-btn">
       + Add Task
     </a>
   </nav>
-
-  <span class="spacer"></span>
 
   <div class="overdue-alert" *ngIf="overdueCount > 0">
     ⚠ {{ overdueCount }} overdue
   </div>
 
-  <div class="user-chip">
-    <div class="avatar">U</div>
-    <span>Logged In</span>
-  </div>
+  <!-- User chip removed -->
 </mat-toolbar>

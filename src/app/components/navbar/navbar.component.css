@@ -1,13 +1,13 @@
 .navbar {
-  background: #0a0a12 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f5efe6 !important;
+  border-bottom: 1px solid rgba(193, 166, 136, 0.8);
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 0 24px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   height: 64px;
 }
 
@@ -17,10 +17,16 @@
   gap: 10px;
 }
 
+.navbar .navbar-brand .brand-text {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
 .navbar .navbar-brand .logo-icon {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  background: linear-gradient(135deg, #8b5e3c, #c28a5b);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -31,12 +37,12 @@
 .navbar .navbar-brand .brand-name {
   font-size: 18px;
   font-weight: 700;
-  color: #e2e8f0;
+  color: #3f2a1d;
 }
 
 .navbar .navbar-brand .brand-sub {
   font-size: 10px;
-  color: #4a5568;
+  color: #8b7359;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -44,28 +50,35 @@
 .navbar .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-left: 24px;
+  gap: 16px;
+  margin-left: auto;
 }
 
 .navbar .nav-links a {
-  color: #94a3b8 !important;
+  color: #6b4b33 !important;
   font-weight: 600;
   font-size: 13px;
+  padding: 6px 14px;
 }
 
 .navbar .nav-links a.active-link {
-  color: #fff !important;
-  background: #7c3aed;
+  color: #fdf6ec !important;
+  background: #8b5e3c;
   border-radius: 8px;
 }
 
 .navbar .nav-links .badge {
-  background: rgba(124, 58, 237, 0.3);
+  background: rgba(139, 94, 60, 0.2);
   border-radius: 99px;
   padding: 1px 7px;
   font-size: 11px;
   margin-left: 4px;
+}
+
+.navbar .nav-links .add-task-btn {
+  margin-left: 8px;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
 .navbar .spacer {

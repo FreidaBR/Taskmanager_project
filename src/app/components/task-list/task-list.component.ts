@@ -116,15 +116,4 @@ export class TaskListComponent implements OnInit {
   get activeCount() { return this.allTasks.filter(t => t.status !== 'completed').length; }
   get completedCount() { return this.allTasks.filter(t => t.status === 'completed').length; }
   get overdueCount() { return this.allTasks.filter(t => this.isOverdue(t)).length; }
-
-  downloadTasksJson() {
-    const dataStr = JSON.stringify(this.allTasks, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'tasks.json';
-    a.click();
-    URL.revokeObjectURL(url);
-  }
 }

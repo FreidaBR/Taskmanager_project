@@ -9,40 +9,40 @@
 html,
 body {
   height: 100%;
-  background: #0a0a12 !important;
-  color: #e2e8f0;
+  background: #f5efe6 !important; /* light beige */
+  color: #3f2a1d;
   font-family: 'DM Sans', 'Segoe UI', sans-serif;
 }
 
 .mat-mdc-card {
-  background: #16161e !important;
-  color: #e2e8f0 !important;
+  background: #fff7ec !important; /* soft cream */
+  color: #3f2a1d !important;
 }
 
 .mat-mdc-dialog-container {
-  --mdc-dialog-container-color: #16161e;
+  --mdc-dialog-container-color: #fff7ec;
 }
 
 .mat-mdc-snack-bar-container {
-  --mdc-snackbar-container-color: #1e1e2e;
-  --mdc-snackbar-supporting-text-color: #e2e8f0;
+  --mdc-snackbar-container-color: #4b2e21;
+  --mdc-snackbar-supporting-text-color: #fdf6ec;
 }
 
 .mat-mdc-raised-button.mat-primary {
-  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  background: linear-gradient(135deg, #8b5e3c, #c28a5b) !important; /* brown gradient */
 }
 
 .mat-mdc-progress-bar {
   border-radius: 99px;
-  --mdc-linear-progress-track-color: rgba(124, 58, 237, 0.15);
-  --mdc-linear-progress-active-indicator-color: #7c3aed;
+  --mdc-linear-progress-track-color: rgba(139, 94, 60, 0.15);
+  --mdc-linear-progress-active-indicator-color: #8b5e3c;
 }
 
 .mat-mdc-select-panel {
-  background: #1e1e2e !important;
+  background: #fff7ec !important;
 }
 
 .mat-mdc-option {
-  color: #e2e8f0 !important;
+  color: #3f2a1d !important;
 }
 

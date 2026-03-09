@@ -10,6 +10,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
   `,
-  styles: [`:host { display: block; min-height: 100vh; background: #0a0a12; }`]
+  styles: [`:host { display: block; min-height: 100vh; background: #f5efe6; }`]
 })
 export class AppComponent {}

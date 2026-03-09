@@ -1,98 +1,126 @@
 .task-list-page {
-  background: #0a0a12;
+  background: #f5efe6;
   min-height: calc(100vh - 64px);
-  padding: 32px 24px;
-  max-width: 1100px;
+  padding: 32px 24px 40px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
-.task-list-page .page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 24px;
+.task-list-page .hero-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+  gap: 28px;
+  padding: 26px 28px;
+  margin-bottom: 28px;
+  border-radius: 20px;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(219, 188, 151, 0.55), transparent 60%),
+              #f0e4d3;
+  border: 1px solid rgba(193, 166, 136, 0.8);
+  box-shadow: 0 18px 55px rgba(120, 94, 60, 0.35);
 }
 
-.task-list-page .page-header .page-title {
-  font-size: 42px;
+.task-list-page .hero-left .hero-kicker {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8b5e3c;
+  margin-bottom: 10px;
+}
+
+.task-list-page .hero-left .hero-title {
+  font-size: 32px;
+  line-height: 1.25;
   font-weight: 700;
-  color: #e2e8f0;
-  margin: 0 0 8px;
+  color: #3f2a1d;
+  margin: 0 0 10px;
 }
 
-.task-list-page .page-header .page-sub {
-  color: #4a5568;
-  font-size: 15px;
-  margin: 0;
+.task-list-page .hero-left .hero-sub {
+  color: #6b4b33;
+  font-size: 14px;
+  max-width: 420px;
+  margin: 0 0 18px;
 }
 
-.task-list-page .page-header .stats-chips {
+.task-list-page .hero-left .hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-list-page .hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.task-list-page .hero-right .stats-chips {
   display: flex;
   gap: 12px;
 }
 
-.task-list-page .page-header .stats-chips .stat-chip {
-  background: #16161e;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.task-list-page .hero-right .stats-chips .stat-chip {
+  background: #fff7ec;
+  border: 1px solid rgba(193, 166, 136, 0.8);
   border-radius: 12px;
   padding: 10px 16px;
   text-align: center;
 }
 
-.task-list-page .page-header .stats-chips .stat-chip .stat-value {
+.task-list-page .hero-right .stats-chips .stat-chip .stat-value {
   display: block;
   font-size: 24px;
   font-weight: 700;
-  color: #7c3aed;
+  color: #8b5e3c;
 }
 
-.task-list-page .page-header .stats-chips .stat-chip .stat-label {
+.task-list-page .hero-right .stats-chips .stat-chip .stat-label {
   font-size: 11px;
-  color: #4a5568;
+  color: #8b7359;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.task-list-page .page-header .stats-chips .stat-chip.green .stat-value {
-  color: #10b981;
+.task-list-page .hero-right .stats-chips .stat-chip.green .stat-value {
+  color: #3b7a57;
 }
 
-.task-list-page .page-header .stats-chips .stat-chip.red .stat-value {
-  color: #ef4444;
+.task-list-page .hero-right .stats-chips .stat-chip.red .stat-value {
+  color: #b13524;
 }
 
-.task-list-page .progress-section {
-  background: #16161e;
+.task-list-page .hero-right .progress-section {
+  background: #fff7ec;
   border-radius: 12px;
   padding: 16px 20px;
-  margin-bottom: 24px;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.task-list-page .progress-section .progress-label {
+.task-list-page .hero-right .progress-section .progress-label {
   display: flex;
   justify-content: space-between;
-  color: #94a3b8;
+  color: #8b7359;
   font-size: 13px;
   margin-bottom: 10px;
 }
 
-.task-list-page .progress-section .progress-label .progress-value {
-  color: #7c3aed;
+.task-list-page .hero-right .progress-section .progress-label .progress-value {
+  color: #8b5e3c;
   font-weight: 700;
 }
 
-.task-list-page .view-toggle {
+.task-list-page .hero-right .view-toggle {
   display: flex;
   gap: 4px;
-  margin-bottom: 20px;
 }
 
-.task-list-page .view-toggle button {
-  background: #16161e;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.task-list-page .hero-right .view-toggle button {
+  background: #f9efe0;
+  border: 1px solid rgba(193, 166, 136, 0.8);
   border-radius: 8px;
-  color: #94a3b8;
+  color: #6b4b33;
   padding: 8px 20px;
   cursor: pointer;
   font-weight: 600;
@@ -101,10 +129,10 @@
   transition: all 0.15s;
 }
 
-.task-list-page .view-toggle button.active {
-  background: #7c3aed;
-  color: white;
-  border-color: #7c3aed;
+.task-list-page .hero-right .view-toggle button.active {
+  background: #8b5e3c;
+  color: #fdf6ec;
+  border-color: #8b5e3c;
 }
 
 .task-list-page .filters-bar {
@@ -126,10 +154,10 @@
 }
 
 .task-list-page .filters-bar .view-mode-btns button {
-  background: #16161e;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f9efe0;
+  border: 1px solid rgba(193, 166, 136, 0.8);
   border-radius: 8px;
-  color: #94a3b8;
+  color: #6b4b33;
   padding: 8px 12px;
   cursor: pointer;
   font-size: 16px;
@@ -137,8 +165,8 @@
 }
 
 .task-list-page .filters-bar .view-mode-btns button.active {
-  background: #7c3aed;
-  color: white;
+  background: #8b5e3c;
+  color: #fdf6ec;
 }
 
 .task-list-page .empty-state {
@@ -153,13 +181,13 @@
 }
 
 .task-list-page .empty-state h3 {
-  color: #4a5568;
+  color: #6b4b33;
   font-size: 20px;
   margin-bottom: 8px;
 }
 
 .task-list-page .empty-state p {
-  color: #2d3748;
+  color: #8b7359;
   margin-bottom: 24px;
 }
 
@@ -174,20 +202,20 @@
 }
 
 .task-card {
-  background: #16161e !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: #fff7ec !important;
+  border: 1px solid rgba(193, 166, 136, 0.8) !important;
   border-radius: 16px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(120, 94, 60, 0.25) !important;
   position: relative;
   overflow: hidden;
   transition: all 0.2s ease;
-  color: #e2e8f0 !important;
+  color: #3f2a1d !important;
 }
 
 .task-card:hover {
-  border-color: rgba(124, 58, 237, 0.3) !important;
+  border-color: rgba(139, 94, 60, 0.55) !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(120, 94, 60, 0.35) !important;
 }
 
 .task-card .priority-bar {
@@ -216,18 +244,18 @@
 .task-card .card-header .task-title {
   font-size: 15px;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #3f2a1d;
   margin: 0 0 6px;
   line-height: 1.3;
 }
 
 .task-card .card-header .task-title.completed-title {
   text-decoration: line-through;
-  color: #4a5568;
+  color: #b8a28c;
 }
 
 .task-card .card-header .task-title .overdue-icon {
-  color: #ef4444;
+  color: #b13524;
   margin-right: 4px;
 }
 
@@ -250,7 +278,7 @@
 
 .task-card .card-header .badges .category-badge {
   font-size: 11px;
-  color: #4a5568;
+  color: #8b7359;
 }
 
 .task-card .card-header .card-actions {
@@ -261,7 +289,7 @@
 }
 
 .task-card .task-description {
-  color: #4a5568;
+  color: #6b4b33;
   font-size: 13px;
   line-height: 1.5;
   margin: 0 0 12px;
@@ -284,8 +312,8 @@
 }
 
 .task-card .card-footer .tag {
-  background: rgba(124, 58, 237, 0.1);
-  color: #7c3aed;
+  background: rgba(139, 94, 60, 0.1);
+  color: #8b5e3c;
   border-radius: 4px;
   padding: 1px 6px;
   font-size: 11px;
@@ -293,11 +321,11 @@
 
 .task-card .card-footer .due-date {
   font-size: 12px;
-  color: #4a5568;
+  color: #8b7359;
 }
 
 .task-card .card-footer .due-date.overdue {
-  color: #ef4444;
+  color: #b13524;
 }
 
 .task-card .action-btn-row {
@@ -306,31 +334,31 @@
 
 .task-card .action-btn-row .status-btn {
   width: 100%;
-  color: #a855f7 !important;
-  border-color: rgba(124, 58, 237, 0.3) !important;
+  color: #8b5e3c !important;
+  border-color: rgba(139, 94, 60, 0.4) !important;
   font-size: 12px;
   font-weight: 600;
 }
 
 ::ng-deep .mat-mdc-text-field-wrapper {
-  background: #16161e !important;
+  background: #fff7ec !important;
 }
 
 ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__leading,
 ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__notch,
 ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__trailing {
-  border-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(193, 166, 136, 0.8) !important;
 }
 
 ::ng-deep .mat-mdc-input-element {
-  color: #e2e8f0 !important;
+  color: #3f2a1d !important;
 }
 
 ::ng-deep .mat-mdc-floating-label {
-  color: #94a3b8 !important;
+  color: #8b7359 !important;
 }
 
 ::ng-deep .mat-mdc-select-value-text {
-  color: #e2e8f0 !important;
+  color: #3f2a1d !important;
 }
 
